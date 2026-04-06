@@ -76,3 +76,100 @@ body { font-family: var(--font-stack); background-color: var(--bg-color); color:
 .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: var(--text-sub); transition: .4s; border-radius: 50%; }
 input:checked + .slider:before { transform: translateX(26px); background-color: var(--accent-yellow); box-shadow: 0 0 10px rgba(241, 196, 15, 0.5); }
 .text-yellow-main { color: var(--accent-yellow); } .text-sub { color: var(--text-sub); }
+
+@media (max-width: 1024px) {
+    .dashboard-container {
+        grid-template-columns: 200px 1fr;
+        grid-template-areas: 
+            "sidebar main"
+            "sidebar weekly";
+        height: auto;
+        min-height: 95vh;
+        margin: 20px 0;
+    }
+    .full-page {
+        grid-column: 2 / -1;
+    }
+    .main-content {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .advanced-details {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns instead of 3 */
+    }
+}
+
+/* Mobile Phone View (Screens smaller than 768px) */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        padding: 0;
+    }
+    
+    .dashboard-container {
+        display: flex; /* Switch from Grid to Flexbox for easy vertical stacking */
+        flex-direction: column;
+        width: 100%;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    /* Adjust Sidebar to sit at the top */
+    .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 20px;
+    }
+    
+    .logo {
+        justify-content: flex-start;
+    }
+    
+    .nav-links {
+        display: flex;
+        overflow-x: auto; /* Allow scrolling sideways if links overflow */
+        gap: 5px;
+        padding-bottom: 10px;
+    }
+    
+    .nav-links a {
+        white-space: nowrap;
+        padding: 10px 15px;
+    }
+
+    /* Adjust Main Content and text sizing */
+    .main-content {
+        padding: 20px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .main-temp-display {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .temp-big {
+        font-size: 5rem;
+    }
+
+    /* Stack details into 1 column */
+    .advanced-details {
+        grid-template-columns: 1fr; 
+    }
+
+    /* Adjust Weekly and Full Pages */
+    .weekly-forecast, .full-page {
+        padding: 20px;
+    }
+    
+    .settings-grid {
+        gap: 15px;
+    }
+    
+    .setting-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
